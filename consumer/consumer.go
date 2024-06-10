@@ -7,7 +7,7 @@ import (
 	"github.com/confluentinc/confluent-kafka-go/v2/kafka"
 )
 
-type Transaction struct {
+type Message struct {
     TransactionID int     `json:"transaction_id"`
     UserID        int     `json:"user_id"`
     ProductID     int     `json:"product_id"`
@@ -34,9 +34,9 @@ func main() {
 	for {
 		msg, err := c.ReadMessage(-1)
 		if err == nil {
-			var transaction Transaction
-			json.Unmarshal(msg.Value, &transaction)
-			fmt.Printf("Consumed transaction: %+v (on %s)\n", transaction, msg.TopicPartition)
+			var message Message
+			json.Unmarshal(msg.Value, &message)
+			fmt.Printf("Consumed transaction: %+v (on %s)\n", message, msg.TopicPartition)
 		} else {
 			fmt.Printf("Consumer error: %v (%v)\n", err, msg)
 		}
