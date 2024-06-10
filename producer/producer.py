@@ -4,7 +4,7 @@ import time
 import random
 from datetime import datetime
 
-def generate_transaction():
+def generate_message():
     return {
         "transaction_id": random.randint(1000, 9999),
         "user_id": random.randint(1, 100),
@@ -19,6 +19,6 @@ producer = KafkaProducer(
     value_serializer=lambda v: json.dumps(v).encode('utf-8'))
 
 while True:
-    transaction = generate_transaction()
-    producer.send('my-topic', transaction)
+    message = generate_message()
+    producer.send('my-topic', message)
     time.sleep(1)

@@ -25,10 +25,10 @@ services:
     build: ./producer
     depends_on:
       - kafka
-    entrypoint: ["sh", "-c", "sleep 40 && python producer.py"]
+    entrypoint: ["sh", "-c", "sleep 20 && python producer.py"]
 
   consumer:
     build: ./consumer
     depends_on:
       - kafka
-    entrypoint: ["sh", "-c", "sleep 40 && ./consumer"]
+    entrypoint: ["sh", "-c", "sleep 20 && ./consumer"]
